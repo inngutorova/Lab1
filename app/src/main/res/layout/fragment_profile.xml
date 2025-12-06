@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="20dp">
@@ -28,81 +29,99 @@
             android:layout_marginBottom="4dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
+        <EditText
+            android:id="@+id/etName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="Введите имя"
+            android:inputType="text"
+            tools:ignore="LabelFor" />
 
         <TextView
-            android:id="@+id/tvName"
-            android:text="Инна Гуторова"
-            android:textSize="16sp"
-            android:layout_marginBottom="12dp"
+            android:text="Статус"
+            android:textStyle="bold"
+            android:textColor="?attr/colorPrimary"
+            android:textSize="14sp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="4dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
+
+        <EditText
+            android:id="@+id/etStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="Введите статус"
+            android:inputType="text"
+            tools:ignore="LabelFor" />
 
         <TextView
             android:text="Никнейм"
             android:textStyle="bold"
             android:textColor="?attr/colorPrimary"
             android:textSize="14sp"
+            android:layout_marginTop="12dp"
             android:layout_marginBottom="4dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
-        <TextView
-            android:id="@+id/tvUsername"
-            android:text="inngu"
-            android:textSize="16sp"
-            android:layout_marginBottom="12dp"
+        <EditText
+            android:id="@+id/etUsername"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:enabled="false"/>
 
         <TextView
             android:text="Email"
             android:textStyle="bold"
             android:textColor="?attr/colorPrimary"
             android:textSize="14sp"
+            android:layout_marginTop="12dp"
             android:layout_marginBottom="4dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
-        <TextView
-            android:id="@+id/tvEmail"
-            android:text="inna@example.com"
-            android:textSize="16sp"
-            android:layout_marginBottom="12dp"
+        <EditText
+            android:id="@+id/etEmail"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:enabled="false"/>
 
         <TextView
             android:text="Телефон"
             android:textStyle="bold"
             android:textColor="?attr/colorPrimary"
             android:textSize="14sp"
+            android:layout_marginTop="12dp"
             android:layout_marginBottom="4dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
-        <TextView
-            android:id="@+id/tvPhone"
-            android:text="+1 234 567 89 00"
-            android:textSize="16sp"
-            android:layout_marginBottom="12dp"
+        <EditText
+            android:id="@+id/etPhone"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:inputType="phone"
+            android:enabled="false"/>
 
         <TextView
             android:text="О себе"
             android:textStyle="bold"
             android:textColor="?attr/colorPrimary"
             android:textSize="14sp"
+            android:layout_marginTop="12dp"
             android:layout_marginBottom="4dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
-        <TextView
-            android:id="@+id/tvBio"
-            android:text=":)"
-            android:textSize="16sp"
-            android:layout_marginBottom="16dp"
+        <EditText
+            android:id="@+id/etBio"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:autofillHints="Введите информацию о себе"
+            android:inputType="text"
+            tools:ignore="LabelFor" />
+
     </LinearLayout>
 </ScrollView>

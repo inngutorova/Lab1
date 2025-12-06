@@ -1,24 +1,20 @@
 package com.example.lab1.ui.settings
 
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.appcompat.app.AppCompatDelegate
 import com.example.lab1.R
 import com.google.android.material.switchmaterial.SwitchMaterial
 
 class SettingsFragment : Fragment() {
 
+    private val viewModel: SettingsViewModel by activityViewModels()
     private lateinit var themeSwitch: SwitchMaterial
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        Log.i("Lifecycle", "SettingsFragment onCreate")
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,17 +23,15 @@ class SettingsFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_settings, container, false)
         themeSwitch = view.findViewById(R.id.themeSwitch)
 
-        val sharedPrefs = requireActivity().getSharedPreferences("settings", Context.MODE_PRIVATE)
-        val isDarkMode = sharedPrefs.getBoolean("dark_mode", false)
-        themeSwitch.isChecked = isDarkMode
+        viewModel.isDarkMode.observe(viewLifecycleOwner) { enabled ->
+            themeSwitch.isChecked = enabled
+        }
 
         themeSwitch.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            } else {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-            }
-            sharedPrefs.edit().putBoolean("dark_mode", isChecked).apply()
+            viewModel.setDarkMode(isChecked)
+            val mode = if (isChecked) AppCompatDelegate.MODE_NIGHT_YES
+            else AppCompatDelegate.MODE_NIGHT_NO
+            AppCompatDelegate.setDefaultNightMode(mode)
         }
 
         return view
