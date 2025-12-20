@@ -8,7 +8,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import android.widget.Button
+import androidx.appcompat.widget.AppCompatImageButton
 
 import com.example.lab1.R
 import kotlinx.coroutines.flow.collectLatest
@@ -31,7 +31,8 @@ class FeedFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_feed, container, false)
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
-        val refreshButton = view.findViewById<Button>(R.id.btnRefresh)
+        val refreshButton =
+            view.findViewById<AppCompatImageButton>(R.id.btnRefresh)
 
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = adapter
