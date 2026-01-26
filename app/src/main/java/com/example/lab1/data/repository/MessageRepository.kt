@@ -21,15 +21,28 @@ class MessageRepository(
     }
 
     suspend fun refresh() {
-        if (!hasInternet()) return
+        val remoteMessages = api.getMessages()
 
-        val remote = api.getMessages()
-        val entities = remote.map {
-            MessageEntity(it.id, it.title, it.body)
+        remoteMessages.forEach { dto ->
+            val existing = dao.getById(dto.id)
+            if (existing == null) {
+                dao.insert(
+                    MessageEntity(
+                        id = dto.id,
+                        title = dto.title,
+                        body = dto.body,
+                        liked = false
+                    )
+                )
+            } else {
+                dao.updateContent(dto.id, dto.title, dto.body)
+            }
         }
+    }
 
-        dao.clear()
-        dao.insertAll(entities)
+
+    suspend fun toggleLike(id: Int) {
+        dao.toggleLike(id)
     }
 
     @RequiresPermission(Manifest.permission.ACCESS_NETWORK_STATE)

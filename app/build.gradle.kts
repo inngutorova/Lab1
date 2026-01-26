@@ -69,4 +69,5 @@ dependencies {
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
     kapt(libs.room.compiler)
+    implementation("androidx.work:work-runtime-ktx:2.9.1")
 }
